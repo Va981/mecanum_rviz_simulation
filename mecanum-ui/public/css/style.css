@@ -1,0 +1,338 @@
+/* =============================================
+   Mecanum UI – Estilos generales
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+/* ---- PÁGINA DE LOGIN ---- */
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  background: #16213e;
+  border: 1px solid #0f3460;
+  border-radius: 10px;
+  padding: 40px 36px;
+  width: 340px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.login-container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  color: #e94560;
+}
+
+.login-container label {
+  display: block;
+  text-align: left;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-size: 0.88rem;
+  color: #aaa;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #0f3460;
+  border-radius: 6px;
+  background: #0f3460;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.login-container input:focus {
+  border-color: #e94560;
+}
+
+.login-container button[type="submit"] {
+  margin-top: 20px;
+  width: 100%;
+  padding: 11px;
+  background: #e94560;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-container button[type="submit"]:hover {
+  background: #c73652;
+}
+
+.error-msg {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+.login-hint {
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ---- PÁGINA DE DASHBOARD ---- */
+
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.dash-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #16213e;
+  padding: 10px 20px;
+  border-bottom: 2px solid #0f3460;
+}
+
+.dash-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #e94560;
+  flex: 1 1 auto;
+}
+
+.connection-status {
+  font-size: 0.9rem;
+}
+
+.status-dot {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.status-dot.connected {
+  background: #27ae60;
+  color: #fff;
+}
+
+.status-dot.disconnected {
+  background: #c0392b;
+  color: #fff;
+}
+
+.jetson-config {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.jetson-config input {
+  padding: 5px 8px;
+  border: 1px solid #0f3460;
+  border-radius: 5px;
+  background: #0f3460;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.jetson-config input:focus {
+  border-color: #e94560;
+}
+
+.dash-header button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+#connectBtn {
+  background: #27ae60;
+  color: #fff;
+}
+
+#connectBtn:hover {
+  background: #1e8449;
+}
+
+#disconnectBtn {
+  background: #7f8c8d;
+  color: #fff;
+}
+
+#disconnectBtn:not([disabled]):hover {
+  background: #c0392b;
+}
+
+.btn-logout {
+  background: #e94560;
+  color: #fff;
+}
+
+.btn-logout:hover {
+  background: #c73652;
+}
+
+/* Main layout: dos columnas */
+.dash-main {
+  display: flex;
+  flex: 1;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* Columna teleop */
+.teleop-panel {
+  width: 320px;
+  min-width: 280px;
+  background: #16213e;
+  padding: 20px 16px;
+  border-right: 2px solid #0f3460;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.teleop-panel h2 {
+  font-size: 1rem;
+  color: #e94560;
+}
+
+.teleop-hint {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Grid de botones teleop 3×3 */
+.teleop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  grid-template-rows: repeat(3, 70px);
+  gap: 6px;
+  justify-content: center;
+}
+
+.teleop-btn {
+  width: 70px;
+  height: 70px;
+  font-size: 1.6rem;
+  border: 2px solid #0f3460;
+  border-radius: 8px;
+  background: #0f3460;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  user-select: none;
+}
+
+.teleop-btn:hover {
+  background: #1a4a8a;
+}
+
+.teleop-btn:active,
+.teleop-btn.pressed {
+  background: #e94560;
+  transform: scale(0.94);
+}
+
+/* Advertencia de teleop */
+.teleop-warning {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  background: rgba(231, 76, 60, 0.15);
+  border: 1px solid #e74c3c;
+  border-radius: 5px;
+  padding: 6px 10px;
+}
+
+/* Velocidad actual */
+.velocity-display {
+  display: flex;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #aaa;
+  flex-wrap: wrap;
+}
+
+.velocity-display strong {
+  color: #e0e0e0;
+}
+
+/* Pose estimada */
+.pose-display h3 {
+  font-size: 0.9rem;
+  color: #e94560;
+  margin-bottom: 4px;
+}
+
+.pose-display p {
+  font-size: 0.88rem;
+  color: #aaa;
+}
+
+/* Columna mapa */
+.map-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.map-panel h2 {
+  font-size: 1rem;
+  color: #e94560;
+}
+
+#map {
+  flex: 1;
+  background: #0a0a1a;
+  border: 2px solid #0f3460;
+  border-radius: 6px;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 700px) {
+  .dash-main {
+    flex-direction: column;
+  }
+
+  .teleop-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #0f3460;
+  }
+
+  .map-panel {
+    min-height: 280px;
+  }
+}

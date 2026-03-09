@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mecanum UI – Iniciar sesión</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <h1>Mecanum Robot UI</h1>
+    <form id="loginForm">
+      <label for="username">Usuario</label>
+      <input type="text" id="username" name="username" placeholder="admin" autocomplete="username" required />
+
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" placeholder="admin" autocomplete="current-password" required />
+
+      <div id="loginError" class="error-msg" hidden>Usuario o contraseña incorrectos.</div>
+
+      <button type="submit">Entrar</button>
+    </form>
+    <p class="login-hint">Demo: usuario <strong>admin</strong> / contraseña <strong>admin</strong></p>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value;
+      if (user === 'admin' && pass === 'admin') {
+        window.location.href = 'dashboard.html';
+      } else {
+        document.getElementById('loginError').hidden = false;
+      }
+    });
+  </script>
+</body>
+</html>

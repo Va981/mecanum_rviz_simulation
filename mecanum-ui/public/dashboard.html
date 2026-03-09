@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mecanum UI – Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- ROSLIBJS desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/roslib@1.3.0/build/roslib.min.js"></script>
+  <!-- EaselJS (dependencia de ROS2D) -->
+  <script src="https://cdn.jsdelivr.net/npm/easeljs@1.0.2/lib/easeljs.min.js"></script>
+  <!-- ROS2D desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/ros2d@0.9.0/build/ros2d.min.js"></script>
+</head>
+<body class="dashboard-page">
+
+  <header class="dash-header">
+    <span class="dash-title">Mecanum Robot – Dashboard</span>
+    <div class="connection-status">
+      <span>Estado rosbridge: </span>
+      <span id="connStatus" class="status-dot disconnected">Desconectado</span>
+    </div>
+    <div class="jetson-config">
+      <label for="jetsonIp">IP Jetson:
+        <input type="text" id="jetsonIp" placeholder="192.168.1.100" size="15" />
+      </label>
+      <button id="connectBtn">Conectar</button>
+      <button id="disconnectBtn" disabled>Desconectar</button>
+    </div>
+    <button id="logoutBtn" class="btn-logout">Cerrar sesión</button>
+  </header>
+
+  <main class="dash-main">
+
+    <!-- Columna izquierda: controles de teleop -->
+    <section class="teleop-panel">
+      <h2>Teleoperación omnidireccional</h2>
+      <p class="teleop-hint">Usa los botones o las teclas de flecha (+ A/D para strafe).</p>
+
+      <div class="teleop-grid">
+        <!-- Fila superior -->
+        <div></div>
+        <button class="teleop-btn" id="btnFwd"    data-key="ArrowUp"    title="Adelante (↑)">▲</button>
+        <div></div>
+
+        <!-- Fila media -->
+        <button class="teleop-btn" id="btnLeft"   data-key="ArrowLeft"  title="Giro izquierda (←)">↺</button>
+        <button class="teleop-btn" id="btnStop"   data-key=" "          title="Stop (espacio)">■</button>
+        <button class="teleop-btn" id="btnRight"  data-key="ArrowRight" title="Giro derecha (→)">↻</button>
+
+        <!-- Fila inferior -->
+        <button class="teleop-btn" id="btnStrafeL" data-key="a"         title="Strafe izquierda (A)">◄</button>
+        <button class="teleop-btn" id="btnBack"   data-key="ArrowDown"  title="Atrás (↓)">▼</button>
+        <button class="teleop-btn" id="btnStrafeR" data-key="d"         title="Strafe derecha (D)">►</button>
+      </div>
+
+      <div class="velocity-display">
+        <span>Vx: <strong id="dispVx">0.00</strong> m/s</span>
+        <span>Vy: <strong id="dispVy">0.00</strong> m/s</span>
+        <span>ω: <strong id="dispVth">0.00</strong> rad/s</span>
+      </div>
+
+      <div id="teleopWarning" class="teleop-warning" hidden>No conectado a rosbridge.</div>
+
+      <div class="pose-display">
+        <h3>Posición estimada</h3>
+        <p>X: <span id="poseX">–</span> &nbsp; Y: <span id="poseY">–</span> &nbsp; θ: <span id="poseTheta">–</span></p>
+      </div>
+    </section>
+
+    <!-- Columna derecha: mapa 2D -->
+    <section class="map-panel">
+      <h2>Mapa 2D (OccupancyGrid)</h2>
+      <div id="map"></div>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
