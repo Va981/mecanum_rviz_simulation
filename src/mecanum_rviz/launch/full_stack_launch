@@ -1,0 +1,22 @@
+<launch>
+  <!-- robot description (si ya lo tenías) -->
+  <param name="robot_description"
+    command="$(find xacro)/xacro $(find ridgeback_description)/urdf/ridgeback.urdf.xacro"/>
+
+  <!-- core nodes -->
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+
+  <!-- your fake controller that publishes /odom and tf -->
+  <node pkg="mecanum_rviz" type="fake_mecanum_controller.py" name="fake_mecanum_controller" output="screen"/>
+
+  <!-- rosbridge websocket (para conectar la web con ROS) -->
+  <node pkg="rosbridge_server" type="rosbridge_websocket" name="rosbridge_websocket" output="screen">
+    <param name="port" value="9090" />
+    <!-- Opcional: setear librería de autenticación etc -->
+  </node>
+
+  <!-- RViz (opcional en Jetson) -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find mecanum_rviz)/rviz/mecanum.rviz"/>
+
+</launch>
